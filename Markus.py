@@ -1,30 +1,48 @@
-# Välj räknesätt:
-# 1: Addition
-# 2: Subtraktion
-# 3: Division
-# 4: Multiplikation
-
-# Skriv första talet:
-# Skriv andra talet:
-
-#Summan/Differensen/Kvoten/Produkten är: 
-
 import math 
-num1 = float(input("Första heltalet: "))
-num2 = float(input("Andra heltalet: "))
 
-def addition(x,y):
+def add(x,y):
     return x + y
 
-def subraktion(x,y):
+def sub(x,y):
     return x - y
 
-def multiplikation(x,y):
+def mult(x,y):
     return x * y
 
-def division(x,y):
+def div(x,y):
     return x / y 
 
-print(num1, "+", num2, "=", addition(num1,num2))
+print("Välj räknesätt: ")
+print("1. Addera")
+print("2. Subtract")
+print("3. Multiplicera")
+print("4. Divide")
 
-def meny():
+while True: 
+    val = input("Välj 1/2/3/4: ")
+
+    if val in ("1", "2", "3", "4"):
+        try:
+            num1 = float(input("Första talet:" ))
+            num2 = float(input("Andra talet: "))
+        except ValueError:
+            print("Fel input. Välj ett giltigt alternativ.")
+
+        if val == "1":
+            print(num1, "+", num2, "=", add(num1,num2))
+         
+        elif val == "2":
+            print(num1, "-", num2, sub(num1,num2))
+        
+        elif val == "3":
+            print(num1, "*", num2,  mult(num1,num2))
+        
+        elif val == "4":
+            print(num1, "/", num2, div(num1,num2))
+        
+        köra_igen = input("Nästa uträkning? (ja/nej)")
+        if köra_igen == "nej":
+            break
+        else:
+            print("Fel input")
+            
