@@ -44,8 +44,6 @@ def dela_upp(uttryck):
     
     return tal_lista
 
-# jämn index är tal, ojämn index är operatorer
-
 def beräkna_tal_från_lista(tal_lista,operatorer):
     if len(tal_lista) % 2 == 0:
         raise ValueError("Ogiltigt uttryck: saknas tal eller operator.")
@@ -65,8 +63,6 @@ def beräkna_tal_från_lista(tal_lista,operatorer):
         resultat = operatorer[op](resultat, nästa_tal)
 
     return resultat
-
-
 
 uttryck = input("Skriv uttryck: ")
 tal_lista = dela_upp(uttryck)
