@@ -8,6 +8,8 @@ def mult(x,y):
     return x * y
 
 def div(x,y):
+    if y == 0:
+        raise ValueError("Division med noll är inte tillåten.")
     return x / y 
 
 operatorer = {"+": add,
@@ -45,19 +47,24 @@ def dela_upp(uttryck):
 
 def beräkna_tal_från_lista(tal_lista,operatorer):
     if len(tal_lista) % 2 == 0:
-        print("Ogiltigt uttryck: saknas tal eller operator.")
+        raise ValueError("Ogiltigt uttryck: saknas tal eller operator.")
 
     resultat = float(tal_lista[0])
     for i in range(1,len(tal_lista), 2):
-        operator = tal_lista[i]
-        nästa_tal = float(tal_lista[i+1])
-        if operator not in operatorer:
-            print(f"Ogiltig operator {operator}")
+        op = tal_lista[i]
+
+        try:
+            nästa_tal = float(tal_lista[i+1])
+        except ValueError:
+            raise ValueError(f"Ogiltigt tal: {tal_lista[i+1]}")
+        
+        if op not in operatorer:
+            print(f"Ogiltig operator {op}")
             continue
-        resultat = operatorer[operator](resultat, nästa_tal)
+        resultat = operatorer[op](resultat, nästa_tal)
     return resultat
 
-uttryck = input("Skriv uttyck: ")
+uttryck = input("Skriv uttryck: ")
 tal_lista = dela_upp(uttryck)
 resultat = beräkna_tal_från_lista(tal_lista, operatorer)
 print("Resultat: ", resultat)
