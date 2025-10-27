@@ -22,19 +22,20 @@ def dela_upp(uttryck):
     tal_lista = []
     tal = ""
 
-    for tecken in uttryck:
+    for i, tecken in enumerate(uttryck):
         if tecken.isdigit() or tecken == ".":
             tal += tecken
 
         elif tecken in "+-*/":
-            if tal:
-                tal_lista.append(tal)
-                tal = ""
-            tal_lista.append(tecken)
-
+            if tecken == "-" and (i == 0 or uttryck[i-1] in "+-*/("):
+                tal += tecken
+            else: 
+                if tal:
+                    tal_lista.append(tal)
+                    tal = ""
+                tal_lista.append(tecken)
         elif tecken == " ":
             continue
-        
         else:
             print(f"Oväntat tecken: {tecken}")
 
@@ -42,8 +43,6 @@ def dela_upp(uttryck):
         tal_lista.append(tal)
     
     return tal_lista
-
-# jämn index är tal, ojämn index är operatorer
 
 def beräkna_tal_från_lista(tal_lista,operatorer):
     if len(tal_lista) % 2 == 0:
@@ -62,6 +61,7 @@ def beräkna_tal_från_lista(tal_lista,operatorer):
             print(f"Ogiltig operator {op}")
             continue
         resultat = operatorer[op](resultat, nästa_tal)
+
     return resultat
 
 uttryck = input("Skriv uttryck: ")
