@@ -44,5 +44,4 @@ while True:
         if köra_igen == "nej":
             break
     else:
-        print("Fel input")
-            
+        print("Fel input")              

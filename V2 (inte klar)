@@ -1,0 +1,63 @@
+def add(x,y):
+    return x + y
+
+def sub(x,y):
+    return x - y
+
+def mult(x,y):
+    return x * y
+
+def div(x,y):
+    return x / y 
+
+operatorer = {"+": add,
+            "-":sub,
+            "*": mult,
+            "/": div
+}
+
+def dela_upp(uttryck):
+    tal_lista = []
+    tal = ""
+
+    for tecken in uttryck:
+        if tecken.isdigit() or tecken == ".":
+            tal += tecken
+
+        elif tecken in "+-*/":
+            if tal:
+                tal_lista.append(tal)
+                tal = ""
+            tal_lista.append(tecken)
+
+        elif tecken == " ":
+            continue
+        
+        else:
+            print(f"Oväntat tecken: {tecken}")
+
+    if tal:
+        tal_lista.append(tal)
+    
+    return tal_lista
+
+# jämn index är tal, ojämn index är operatorer
+
+def beräkna_tal_från_lista(tal_lista,operatorer):
+    if len(tal_lista) % 2 == 0:
+        print("Ogiltigt uttryck: saknas tal eller operator.")
+
+    resultat = float(tal_lista[0])
+    for i in range(1,len(tal_lista), 2):
+        operator = tal_lista[i]
+        nästa_tal = float(tal_lista[i+1])
+        if operator not in operatorer:
+            print(f"Ogiltig operator {operator}")
+            continue
+        resultat = operatorer[operator](resultat, nästa_tal)
+    return resultat
+
+uttryck = input("Skriv uttyck: ")
+tal_lista = dela_upp(uttryck)
+resultat = beräkna_tal_från_lista(tal_lista, operatorer)
+print("Resultat: ", resultat)
