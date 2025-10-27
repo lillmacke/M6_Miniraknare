@@ -11,4 +11,4 @@ def beräkna(uttryck):
     
 uttryck = input("Skriv ett uttryck: ")
 resultat = beräkna(uttryck)
-print("Resultat:", resultat)
+print(f"Resultat: {resultat:.3f}")
