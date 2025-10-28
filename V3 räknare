@@ -54,7 +54,7 @@ while True:
 
     elif  val =='3':
         while True:
-            x = sp.Symbol('x') x
+            x = sp.Symbol('x')
             nytt_uttryck = input("Ange ett uttryck: ")
 
             uttryck_1 = sp.sympify(nytt_uttryck)
