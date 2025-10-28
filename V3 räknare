@@ -1,0 +1,80 @@
+import sympy as sp
+
+def meny(title,prompt,options):
+    print(title)
+    print()
+
+    for first, second in options.items():
+        print(f"{first}) {second}")
+
+    while True:
+        val = input(prompt)
+        if val in options:
+            return val
+        print("Fel alternativ, försök igen.")
+
+
+def beräkna(uttryck):
+    try:
+        expr = sp.sympify(uttryck)
+        resultat = expr.evalf()
+        return resultat
+    except Exception as e:
+        print("Fel i uttrycket: ", e)
+        return None
+
+options = {"1": "Vanlig beräkning", "2": "Derivering", "3": "Integreration", "4": "Avsluta"}
+
+while True:
+    val = meny("Välj räknesätt: ", "Jag väljer:", options)
+
+    if val == "1":
+        while True:
+            uttryck = input("Skriv ett uttryck: ")
+            resultat = beräkna(uttryck)
+            if resultat is not None:
+                print(f"Resultat: {resultat:.3f}")
+
+            ny = input("Vill du göra en ny beräkning? (ja/nej): ").lower()
+            if ny != "ja":
+                break
+
+    elif  val =='2':
+        while True:
+            x = sp.Symbol('x') #skapar en variavl som man kallar x
+            nytt_uttryck = input("Ange ett uttryck: ")
+            uttryck_1 = sp.sympify(nytt_uttryck) #detta gör om texten till ett sympy uttryck
+            derivator = sp.diff(uttryck_1, x) #driverar uttrycket man skriver i input
+
+            print(f"Derivatan av ({uttryck_1}) blir: {derivator}")
+
+            ny = input("Vill du derivera ett nytt uttryck? (ja/nej): ").lower()
+            if ny != "ja":
+                break
+
+    elif  val =='3':
+        while True:
+            x = sp.Symbol('x') #skapar en variabel som man kallar x
+            nytt_uttryck = input("Ange ett uttryck: ") # En variabel som sparar det man skriver i denna input
+
+            uttryck_1 = sp.sympify(nytt_uttryck) #Denna rad gör om input svaret till ett uttryck som passar sympy biblioteket
+            fraga_2 = input("Bestämda gränser? (ja eller nej):  ") # Denna variabel frågar om man ska ha en bestämd eller öppen integral
+
+            if fraga_2.lower() =='ja': # Denna if sats gör att man väljer två värden på x och och beräknar integralen mellan dem på grafen 
+                a = float(input("Bestäm nedre gränsen för x: "))
+                b = float(input("Bestäm den övre gränsen för x: "))
+                resultat = sp.integrate(uttryck_1, (x,a,b))
+                print(f"Integalen av ({uttryck_1}) från {a} till {b} i grafen är: {resultat} ")
+            else: #Detta händer om man svarar nej på fraga_2 variabeln. 
+                resultat = sp.integrate(uttryck_1, x)
+                print(f"Integralen av ({uttryck_1}) är: {resultat} + C (konstant) ")
+
+            ny = input("Vill du integrera ett nytt uttryck= (ja/nej): ").lower()
+            if ny != "ja":
+                break
+    elif val == "4":
+        print("Programmet avslutas.")
+        break
+
+
+
