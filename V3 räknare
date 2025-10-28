@@ -41,10 +41,10 @@ while True:
 
     elif  val =='2':
         while True:
-            x = sp.Symbol('x') #skapar en variavl som man kallar x
+            x = sp.Symbol('x')
             nytt_uttryck = input("Ange ett uttryck: ")
-            uttryck_1 = sp.sympify(nytt_uttryck) #detta gör om texten till ett sympy uttryck
-            derivator = sp.diff(uttryck_1, x) #driverar uttrycket man skriver i input
+            uttryck_1 = sp.sympify(nytt_uttryck)
+            derivator = sp.diff(uttryck_1, x)
 
             print(f"Derivatan av ({uttryck_1}) blir: {derivator}")
 
