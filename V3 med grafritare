@@ -18,7 +18,7 @@ def meny(title,prompt,options):
 
 def beräkna(uttryck):
     try:
-        uttryck = uttryck.replace("X","x")
+        uttryck = uttryck.lower()
         expr = sp.sympify(uttryck)
         return expr.evalf()
     except Exception as e:
@@ -108,7 +108,7 @@ while True:
     # derivering:
     elif  val =='2':
         while True:
-            nytt_uttryck = input("Ange ett uttryck: ").replace("X","x")
+            nytt_uttryck = input("Ange ett uttryck: ").lower()
             uttryck_1 = sp.sympify(nytt_uttryck)
             derivata = sp.diff(uttryck_1, x)
 
@@ -120,7 +120,7 @@ while True:
     # Integrering
     elif  val =='3':
         while True:
-            nytt_uttryck = input("Ange ett uttryck: ").replace("X","x")
+            nytt_uttryck = input("Ange ett uttryck: ").lower()
             uttryck_1 = sp.sympify(nytt_uttryck)
 
             bestämd = input("Bestämda gränser? (ja eller nej):  ").lower()
