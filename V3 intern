@@ -30,7 +30,7 @@ def meny(title,prompt,options):
         print(f"{key}) {value}")
 
     print()
-
+    
     while True:
         val = input(prompt).strip()
         if val in options:
@@ -38,7 +38,7 @@ def meny(title,prompt,options):
         print("Fel alternativ, försök igen.")
 
 
-def beräkna(uttryck):
+def beräkna(uttryck): #Prata om Try och exception
     try:
         expr = sp.sympify(uttryck)
         return expr.evalf()
@@ -57,7 +57,7 @@ def vanlig_beräkning():
         if input("Vill du göra en ny beräkning? (ja/nej): ").lower() == "nej":
                 break
     
-def kolla_input(prompt, converter=float, default=None):
+def kolla_input(prompt, converter=float, default=None): #Markus nämner snabbt
     while True:
         svar = input(prompt)
         if not svar and default is not None:
@@ -68,7 +68,7 @@ def kolla_input(prompt, converter=float, default=None):
             print("Felaktig inmatning, försök igen")
 
 
-def plotta_funktioner(funktioner, x, default_a=-10, default_b=10):
+def plotta_funktioner(funktioner, x, default_a=-10, default_b=10): #Markus berättar
     a = kolla_input(f"Nedre gräns för x (Tryck Enter för {default_a}): ", default=default_a)
     b = kolla_input(f"Övre gräns för x (Tryck Enter för {default_b}): ", default=default_b)
     
@@ -79,7 +79,7 @@ def plotta_funktioner(funktioner, x, default_a=-10, default_b=10):
         show = True
     )
     
-def efter_beräkning_meny(uttryck, x, extra_funktion=None, extra_label=None):
+def efter_beräkning_meny(uttryck, x, extra_funktion=None, extra_label=None): #Markus berättar
     while True:
         val = meny("Vad vill du göra nu? ", "Jag väljer: ", eftermeny)
 
@@ -100,9 +100,8 @@ def efter_beräkning_meny(uttryck, x, extra_funktion=None, extra_label=None):
         
         elif val == "3":
             break
-
-        
-def derivering():
+       
+def derivering(): #William berättar om deriveringen, Markus förklarar efter_beräkning_meny
     while True:
         uttryck = input("Ange ett uttryck: ").lower()
         expr = sp.sympify(uttryck)
@@ -116,7 +115,7 @@ def derivering():
             break
 
 
-def integrering():
+def integrering(): #William berättar
     while True:
         uttryck = input("Ange ett uttryck: ").lower()
         expr = sp.sympify(uttryck)
