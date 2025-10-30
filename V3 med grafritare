@@ -108,7 +108,7 @@ def derivering():
         expr = sp.sympify(uttryck)
         derivata = sp.diff(expr, x)
 
-        print(f"Derivatan av ({expr}) är: ")
+        print(f"\nDerivatan av ({expr}) är:\n ")
         sp.pprint(derivata)
 
         status = efter_beräkning_meny(expr, x, derivata, "f'(x)")
@@ -126,11 +126,11 @@ def integrering():
             a = kolla_input("Nedre gränsen för x: ")
             b = kolla_input("Övre Gränsen för x: ")
             integral = sp.integrate(expr, (x, a, b))
-            print(f"Integralen av ({expr}) från {a} till {b} är: ")
+            print(f"Integralen av ({expr}) från {a} till {b} är:\n ")
             sp.pprint(integral)
         else: 
             integral = sp.integrate(expr, x)
-            print(f"Integralen av ({expr}) (med konstant C) är: ")
+            print(f"\nIntegralen av ({expr}) (med konstant C) är: ")
             sp.pprint(integral)
         
         val = meny("Vad vill du göra nu? ", "Jag väljer: ", efter_eftermeny)
